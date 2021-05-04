@@ -1,13 +1,9 @@
 package com.example.notekeeper
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.notekeeper.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
