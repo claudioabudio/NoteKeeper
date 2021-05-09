@@ -22,6 +22,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include
+        android:id="@+id/content_note_list_id"
         layout="@layout/content_note_list"
         android:layout_width="match_parent" />
 
