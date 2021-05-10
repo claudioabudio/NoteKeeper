@@ -1,9 +1,12 @@
 package com.example.notekeeper
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.notekeeper.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -33,4 +36,36 @@ class MainActivity : AppCompatActivity() {
         val coursePosition = DataManager.courses.values.indexOf(note.course)
         binding.spinnerCourses.setSelection(coursePosition)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(com.example.notekeeper.R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_next -> {
+                moveNext()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if (notePosition >= DataManager.notes.lastIndex) {
+            val menuItem = menu?.findItem(R.id.action_next)
+            menuItem?.icon = getDrawable(R.drawable.ic_white_block_24)
+            menuItem?.setEnabled(false)
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    private fun moveNext() {
+        ++notePosition
+        displayNote()
+        invalidateOptionsMenu()
+    }
+
+
 }
